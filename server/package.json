@@ -1,7 +1,7 @@
 {
   "name": "moviecrud-server",
   "version": "1.0.0",
-  "description": "MovieCRUD backend with Express and MongoDB",
+  "description": "MovieCRUD Backend",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Delete a Movie</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <h1>Delete a New Movie</h1>
+        <form id="deleteMovie" class="container" method="post" action="/delete">
+            <label>Movie Title:</label> <input name="title" id="title" required/><br/>
+            <div id = "validateData"></div>
+            <button type="submit">Delete Movie</button>
+        </form>
+    </body>
+
+    <footer class="text-center mt-5 py-4">
+    <div class="container">
+        <p class="mb-1">&copy; 2025 Daniel Rusev. All rights reserved.</p>
+    </div>
+  </footer>
+
+<script>
+    document.getElementById('deleteMovie').addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        const inputTitle = document.getElementById('title');
+        const title = inputTitle.value.trim();
+        const validateData = document.getElementById('validateData');
+        if (!title) {validateData.textContent = "Please enter in the title you would like to delete.";
+        return;
+    } else {validateData.textContent = "";
+    }
+
+    const formValues = new URLSearchParams();
+    formValues.append('title', title);
+    const getMovieDeleted = await fetch('/delete', {method: "POST", headers: {"Content-Type": "application/x-www-form-urlencoded",}, body: formValues.toString()});
+
+    if (getMovieDeleted.redirected) {window.location.href = getMovieDeleted.url;}
+    else {const text = await getMovieDeleted.text(); validateData.textContent = text || "Movie has been successfully deleted.";}
+});
+
+</script>
+</html>

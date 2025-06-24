@@ -1,0 +1,206 @@
+ body {
+        font-family: 'Times New Roman', Times, serif;
+        background-color: lightgray;
+        color:#333;
+        line-height: 1.6;
+       }
+
+       nav {
+            background-color: greenyellow !important;
+       }
+
+       nav ul {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            list-style-type: none;
+            gap: 1rem;
+       }
+
+       nav a {
+            color: blue !important;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.4rem 0.8rem;
+            border-radius: 8px;
+            transition: background 0.3s;
+       }
+
+       nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+       }
+
+       header {
+         text-align: center;
+         padding: 2rem 1rem;
+         background-color: lightgray !important;
+         border: 1px solid blue !important;
+       }
+
+       header img {
+          width: 400px;
+          height: auto;
+          border-radius: 8px;
+          margin-top: 1rem;
+       }
+
+       main {
+          max-width: 800px;
+          margin: 0 auto;
+          padding: 20px;
+       }
+
+       section {
+          margin-bottom: 2rem;
+       }
+
+       h2 {
+          margin-bottom: 0.5rem;
+          color: green;
+       }
+
+       ul {
+          margin-top: 1rem;
+          list-style-type: disc;
+          padding-left: 1.5rem;
+       }
+       
+       table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-top: 1rem;
+          background-color: blue !important;
+          border: 1px solid blue !important;
+       }
+
+
+
+       table th, table td {
+          border: 1px solid greenyellow !important;
+          padding: 10px;
+          text-align: left;
+       }
+
+       table th {
+          background-color: blue !important;
+          color: greenyellow !important;
+       }
+
+       a {
+          color: #00796b !important;
+          text-decoration: none;
+       }
+
+       a:hover {
+          text-decoration: underline;
+       }
+       
+       form {
+          background-color: white !important;
+          padding: 1rem;
+          border-radius: 8px;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+       }
+
+       form label {
+          display: block;
+          margin: 0.5rem 0 0.2rem;
+          font-weight: bold;
+       }
+
+       form input, form textarea {
+          width: 100%;
+          padding: 0.5rem;
+          border: 1px solid greenyellow !important;
+          border-radius: 8px;
+          margin-bottom: 1rem;
+       }
+
+
+
+       form button {
+          background-color: blue !important;
+          color: greenyellow !important;
+          padding: 0.6rem 1.2rem;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+          font-size: 1rem;
+       }
+
+
+
+       form button:hover {
+           background-color: blue !important;
+       }
+
+       footer {
+          text-align: center;
+          padding: 1rem;
+          margin-top: 2rem;
+          border-top: 1px solid navy !important;
+          font-size: 0.9rem;
+       }
+       
+       #validateDate {
+        color: red;
+        background-color: darkred;
+        font-weight: bold;
+        font-size: 30px;
+       }
+
+       .home-button {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          background-color: navy !important;
+          color: greenyellow !important;
+          font-size: 24px;
+          padding: 12px 16px;
+          border-radius: 50%;
+          text-align: center;
+          text-decoration: none;
+          box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+          transition: background 0.3s ease;
+          z-index: 1000;
+       }
+
+       .hero {
+          background: rgba(0, 0, 0, 0.6);
+          padding: 3rem 1rem;
+          border-radius: 1rem;
+          text-align: center;
+       }
+
+       .hero h1.display-4 {
+            color: lightgreen;
+        }
+
+       .hero p.lead {
+            color: lightgreen;
+        }
+
+       @media (max-width: 600px) {
+
+       h1 {
+           font-size: 2rem;
+       }
+
+       nav ul {
+           flex-direction: column;
+           align-items: center;
+       }
+
+       table th, table td {
+           font-size: 0.9rem;
+       }
+
+       form button {
+            width: 100%;
+       }
+
+       .home-button {
+           font-size: 20px;
+           padding: 10px 14px;
+       }
+    }

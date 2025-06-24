@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Create a Movie</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <h1>Create a New Movie</h1>
+        <form id="createMovie" class="container" method="post" action="/create">
+            <label>Movie Title:</label> <input name="title" id="title" required/><br/>
+            <label>Comments:</label> <input name="comments" id="comments" required/><br/>
+            <div id = "validateData"></div>
+            <button type="submit">Create a New Movie</button>
+        </form>
+    </body>
+
+    <footer class="text-center mt-5 py-4">
+    <div class="container">
+        <p class="mb-1">&copy; 2025 Daniel Rusev. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('createMovie').addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        const inputTitle = document.getElementById('title');
+        const title = inputTitle.value.trim();
+        const inputComments = document.getElementById('comments');
+        const comments = inputComments.value.trim();
+        const validateData = document.getElementById('validateData');
+        if (!title) {validateData.textContent = "Please enter in the title of the movie you would like to create.";
+        return;
+    } else {validateData.textContent = "";
+    }
+
+        if (!comments) {validateData.textContent = "Please enter in comments for the movie you would like to create.";
+        return;
+    } else {validateData.textContent = "";
+    }
+
+    const formValues = new URLSearchParams();
+    formValues.append('title', title);
+    formValues.append('comments', comments);
+    const getMovieCreated = await fetch('/create', {method: "POST", headers: {"Content-Type": "application/x-www-form-urlencoded",}, body: formValues.toString()});
+
+    if (getMovieCreated.redirected) {window.location.href = getMovieCreated.url;}
+    else {const text = await getMovieCreated.text(); validateData.textContent = text || "Movie has been successfully created.";}
+});
+
+</script>
+</html>

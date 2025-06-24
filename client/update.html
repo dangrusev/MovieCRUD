@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Update a Movie</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <h1>Update a Movie</h1>
+        <form id="updateMovie" class="container" method="post" action="/update">
+            <label>Movie Title:</label> <input name="title" id="title" required/><br/>
+            <label>New Comments:</label> <input name="comments" id="comments" required/><br/>
+            <div id = "validateData"></div>
+            <button type="submit">Update Movie</button>
+        </form>
+    </body>
+
+    <footer class="text-center mt-5 py-4">
+    <div class="container">
+        <p class="mb-1">&copy; 2025 Daniel Rusev. All rights reserved.</p>
+    </div>
+  </footer>
+
+  
+  <script>
+    document.getElementById('updateMovie').addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        const inputTitle = document.getElementById('title');
+        const title = inputTitle.value.trim();
+        const inputComments = document.getElementById('comments');
+        const comments = inputComments.value.trim();
+        const validateData = document.getElementById('validateData');
+        if (!title) {validateData.textContent = "Please enter in the title of the movie you would like to update.";
+        return;
+    } else {validateData.textContent = "";
+    }
+
+        if (!comments) {validateData.textContent = "Please enter in new comments for the movie you would like to update.";
+        return;
+    } else {validateData.textContent = "";
+    }
+
+    const formValues = new URLSearchParams();
+    formValues.append('title', title);
+    formValues.append('comments', comments);
+    const getMovieUpdated = await fetch('/update', {method: "POST", headers: {"Content-Type": "application/x-www-form-urlencoded",}, body: formValues.toString()});
+
+    if (getMovieUpdated.redirected) {window.location.href = getMovieUpdated.url;}
+    else {const text = await getMovieUpdated.text(); validateData.textContent = text || "Movie has been successfully updated.";}
+});
+
+</script>
+
+</html>

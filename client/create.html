@@ -45,9 +45,9 @@
     formValues.append('comments', comments);
     const getMovieCreated = await fetch('https://moviecrud-hygjchgccgccenhj.centralus-01.azurewebsites.net/create', {method: "POST", headers: {"Content-Type": "application/x-www-form-urlencoded",}, body: formValues.toString()});
 
-    const values = await response.json();
+    const values = await getMovieCreated.json();
         if (values.success && values.redirectUrl) {window.location.href = values.redirectUrl;}
-        else {validateData.textContent = values.message || "Movie has been successfully created.";}
+        else {validateData.textContent = values.message || "Error in creating movie.";}
 
     //if (getMovieCreated.redirected) {window.location.href = getMovieCreated.url;}
     //else {const text = await getMovieCreated.text(); validateData.textContent = text || "Movie has been successfully created.";}

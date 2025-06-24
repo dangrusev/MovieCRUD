@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 require('dotenv').config();
+const cors = require("cors");
+app.use(cors({origin: "https://lemon-sky-0fdced31e.2.azurestaticapps.net", methods: ["GET", "POST"]}));
 app.get("/", (req, res) => {res.send("Welcome to Movie_CRUD Backend!");
 });
 

@@ -44,9 +44,12 @@
     formValues.append('title', title);
     formValues.append('comments', comments);
     const getMovieUpdated = await fetch('https://moviecrud-hygjchgccgccenhj.centralus-01.azurewebsites.net/update', {method: "POST", headers: {"Content-Type": "application/x-www-form-urlencoded",}, body: formValues.toString()});
-
-    if (getMovieUpdated.redirected) {window.location.href = getMovieUpdated.url;}
-    else {const text = await getMovieUpdated.text(); validateData.textContent = text || "Movie has been successfully updated.";}
+    const values = await getMovieUpdated.json();
+        if (values.success && values.redirectUrl) {window.location.href = values.redirectUrl;}
+        else {validateData.textContent = values.message || "Movie has been successfully updated.";}
+        
+    //if (getMovieUpdated.redirected) {window.location.href = getMovieUpdated.url;}
+    //else {const text = await getMovieUpdated.text(); validateData.textContent = text || "Movie has been successfully updated.";}
 });
 
 </script>

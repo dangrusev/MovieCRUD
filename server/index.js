@@ -20,7 +20,7 @@ mongoose.connect(mongooseUri, {useNewUrlParser:true, useUnifiedTopology:true});
 
 //Create route
 app.post("/create", function(req,res) {let newNote = new Movie({title: req.body.title, comments: req.body.comments});
-	newNote.save().then(() => res.redirect("/"));});
+	newNote.save().then(() => res.json({success:true, redirectUrl:"/"}));});
 
 const renderNotes = (notesArray) => {let text = "Your Current Movie Collection:\n\n";
 	notesArray.forEach((note) => 
@@ -41,16 +41,16 @@ app.get("/read", function(request, response) {Movie.find({}).then(notes => {
 //Update route
 app.post("/update", (req,res) => {Movie.findOneAndUpdate(
 	{ title: req.body.title}, {comments: req.body.comments}, {new: true}).then((movieUpdate) => {
-		if (movieUpdate) {res.redirect("/");}
-		else {res.send("This movie is not in your collection!");}
+		if (movieUpdate) {res.json({ success:true, redirectUrl: "/"});}
+		else {res.json({ success:false, message: "This movie is not in your collection!"});}
 	})
 });
 
 //Delete route
 app.post("/delete", (req,res) => {Movie.findOneAndDelete(
 	{title: req.body.title}).then(movieDelete => {
-		if (movieDelete) {res.redirect("/");}
-		else {res.send("This movie is not in your collection!");}
+		if (movieDelete) {res.json({ success:true, redirectUrl: "/"});}
+		else {res.json({ success:false, message: "This movie is not in your collection!"});}
 	});
 })
 

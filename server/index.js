@@ -3,6 +3,7 @@ const app = express();
 require('dotenv').config();
 const cors = require("cors");
 app.use(cors({origin: "https://lemon-sky-0fdced31e.2.azurestaticapps.net", methods: ["GET", "POST"]}));
+app.use(express.json());
 app.get("/", (req, res) => {res.send("Welcome to Movie_CRUD Backend!");
 });
 
@@ -22,7 +23,7 @@ mongoose.connect(mongooseUri, {useNewUrlParser:true, useUnifiedTopology:true});
 
 //Create route
 app.post("/create", function(req,res) {let newNote = new Movie({title: req.body.title, comments: req.body.comments});
-	newNote.save().then(() => res.json({success:true, redirectUrl:"/"}));});
+	newNote.save().then(() => res.json({success:true, redirectUrl:"https://lemon-sky-0fdced31e.2.azurestaticapps.net/"}));});
 
 const renderNotes = (notesArray) => {let text = "Your Current Movie Collection:\n\n";
 	notesArray.forEach((note) => 
@@ -43,7 +44,7 @@ app.get("/read", function(request, response) {Movie.find({}).then(notes => {
 //Update route
 app.post("/update", (req,res) => {Movie.findOneAndUpdate(
 	{ title: req.body.title}, {comments: req.body.comments}, {new: true}).then((movieUpdate) => {
-		if (movieUpdate) {res.json({ success:true, redirectUrl: "/"});}
+		if (movieUpdate) {res.json({ success:true, redirectUrl: "https://lemon-sky-0fdced31e.2.azurestaticapps.net/"});}
 		else {res.json({ success:false, message: "This movie is not in your collection!"});}
 	})
 });
@@ -51,7 +52,7 @@ app.post("/update", (req,res) => {Movie.findOneAndUpdate(
 //Delete route
 app.post("/delete", (req,res) => {Movie.findOneAndDelete(
 	{title: req.body.title}).then(movieDelete => {
-		if (movieDelete) {res.json({ success:true, redirectUrl: "/"});}
+		if (movieDelete) {res.json({ success:true, redirectUrl: "https://lemon-sky-0fdced31e.2.azurestaticapps.net/"});}
 		else {res.json({ success:false, message: "This movie is not in your collection!"});}
 	});
 })

@@ -33,7 +33,7 @@
 
     const formValues = new URLSearchParams();
     formValues.append('title', title);
-    const getMovieDeleted = await fetch('/delete', {method: "POST", headers: {"Content-Type": "application/x-www-form-urlencoded",}, body: formValues.toString()});
+    const getMovieDeleted = await fetch('https://moviecrud-hygjchgccgccenhj.centralus-01.azurewebsites.net/delete', {method: "POST", headers: {"Content-Type": "application/x-www-form-urlencoded",}, body: formValues.toString()});
 
     if (getMovieDeleted.redirected) {window.location.href = getMovieDeleted.url;}
     else {const text = await getMovieDeleted.text(); validateData.textContent = text || "Movie has been successfully deleted.";}

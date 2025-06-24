@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 require('dotenv').config();
+app.get("/", (req, res) => {res.send("Welcome to Movie_CRUD Backend!");
+});
 
 const path = require("path");
 //FrontEnd deployed seperatly
